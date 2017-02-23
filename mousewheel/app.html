@@ -1,0 +1,49 @@
+<!-- app.html -->
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- 控制缩放比 -->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<!-- IOS顶部状态栏样式 -->
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<!-- 防止数字变成电话 -->
+	<meta content="telephone=no" name="format-detection">
+	<!-- IOS保存页面到桌面时，显示的图标 -->
+	<link rel="apple-touch-icon" href="custom_icon.png">
+	<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+	<title>mousewheel</title>
+</head>
+<body>
+	
+	<div style="height:3000px; background:#f00;"></div>
+	<script type="text/javascript">
+
+	// 2 级事件
+	// Firefox use 'DOMMouseScroll'  e.detail     向上 -3  / 向下 3     DOM 2  级事件 
+	// OTHER   use 'onmousewheel'    e.wheelDelta 向上 120 / 向下 -120  DOM 0 2级事件 
+
+	// document.addEventListener( 'DOMMouseScroll' , function( e ){
+	// 	console.log( e.type );
+	// })
+	
+	// 0 级事件 
+	// document.onmousewheel = function( e ) {
+	// 	console.log( e.type );
+	// }
+
+	$( document ).on( 'mousewheel DOMMouseScroll' , function( e ){
+
+		// console.log( e.type );
+		// console.log( e.originalEvent.wheelDelta );
+		// console.log( e.originalEvent.detail );
+
+		var delta = - e.originalEvent.wheelDelta || e.originalEvent.detail ;
+		if( delta > 0 ){ console.log('down') }
+		else{ console.log('up') }
+	})
+
+
+	</script>
+
+</body>
+</html>

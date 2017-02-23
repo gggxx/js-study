@@ -1,0 +1,42 @@
+<!-- app.html -->
+<!-- http://www.cnblogs.com/shxydx/articles/2856882.html -->
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>touch</title>
+	<style type="text/css">
+	#div1 {
+		width:200px;height:200px;background:#f00;
+		position:absolute; left:0; top:0;
+	}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+
+	<script type="text/javascript">
+	// event.touches是与屏幕接触的所有手指的一个数组，而不仅是位于目标DOM元素上的那些。你可能会发现使用 event.targetTouches和event.changedTouches来代替event.touches更有用一些。
+	// touchmove期间，事件大约一秒钟 触发60次
+	// originalEvent 是 jquery 的事件;
+	var log = console.log;
+	var oDiv = document.querySelector('#div1');
+	oDiv.addEventListener( 'touchmove' , function( e ){
+		var touch = e.touches[0];
+		console.log( e.touches );
+		console.log( e.originalEvent );
+		console.log( e.targetTouches );
+		var x = touch.pageX;
+		var y = touch.pageY;
+
+		oDiv.style.left = x +'px';
+		oDiv.style.top  = y +'px';
+	})
+	// alert( oDiv );
+
+	// 组织视图反弹
+	document.body.addEventListener('touchmove', function(event) { 
+			event.preventDefault(); 
+	}, false);
+	</script>
+</body>
+</html>
